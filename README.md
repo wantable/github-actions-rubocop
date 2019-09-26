@@ -1,8 +1,19 @@
-# Rubocop Action
+# Github Action: Rubocop
+
+- [Github Action: Rubocop](#github-action-rubocop)
+  - [Usage](#usage)
+  - [Instructions](#instructions)
 
 Lint your Ruby code in parallel to your builds.
 In order to use this action you will need to specify the `$GITHUB_TOKEN`:
 
+
+## Usage
+
+![](screenshots/annotations.png)
+
+
+## Instructions
 
 ```yaml
 # Worflow example
@@ -22,5 +33,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-
-![](screenshots/annotations.png)
