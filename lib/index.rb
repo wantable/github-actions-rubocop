@@ -20,7 +20,7 @@ require 'time'
   "Content-Type": 'application/json',
   "Accept": 'application/vnd.github.antiope-preview+json',
   "Authorization": "Bearer #{@GITHUB_TOKEN}",
-  "User-Agent": 'rubocop-action'
+  "User-Agent": 'github-actions-rubocop'
 }
 
 def create_check
