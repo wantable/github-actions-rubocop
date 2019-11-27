@@ -3,7 +3,7 @@ description: 'Runs rubocop on your PRs :)'
 author: 'Luiz Fonseca'
 branding:
   icon: 'alert-triangle'
-  color: '#FF3300'
+  color: 'red'
 runs:
   using: 'docker'
   image: 'Dockerfile'
