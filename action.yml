@@ -1,0 +1,6 @@
+name: 'Github Rubocop Action'
+description: 'Runs rubocop on your PRs :)'
+author: 'Luiz Fonseca'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
