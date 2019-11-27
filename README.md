@@ -34,7 +34,7 @@ jobs:
     - uses: actions/checkout@v1
 
     - name: Rubocop checks
-        uses: lyttco/github-actions-rubocop@1.3
+        uses: lyttco/github-actions-rubocop@1.3.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
