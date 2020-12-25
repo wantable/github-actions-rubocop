@@ -120,7 +120,14 @@ def run
 
     update_check(id, conclusion, output)
 
-    raise if conclusion == 'failure'
+    # Print offenses
+    if conclusion == 'failure'
+      puts output[:summary]
+      output['annotations'].each do |annotation|
+        puts "L#{annotation['start_line']}-L#{annotation['end_line']}:#{annotation['message']}"
+      end
+      raise 'Rubocop found offenses'
+    end
   rescue StandardError
     update_check(id, 'failure', nil)
     raise
