@@ -59,22 +59,22 @@ def update_check(id, conclusion, output)
     'conclusion' => #{conclusion},"
 
 
-  unless output.nil?
-    output = {
-      title: output[:title],
-      summary: output[:summary],
-      annotations: []
-    }
+  # unless output.nil?
+  #   output = {
+  #     title: output[:title],
+  #     summary: output[:summary],
+  #     annotations: []
+  #   }
 
-    body['output'] = output
-  end
+  #   body['output'] = output
+  # end
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
 
-  puts "------body"
-  puts body.inspect
-  puts "-------"
+  # puts "------body"
+  # puts body.inspect
+  # puts "-------"
 
   resp = http.patch(path, body.to_json, @headers)
   puts "resp.code.to_i: #{resp.code.to_i}"
@@ -137,7 +137,8 @@ def run
     conclusion = results['conclusion']
     output = results['output']
     puts "running update check like normal"
-    # limit to 50 annoations per update
+    # https://docs.github.com/en/rest/reference/checks#output-object
+    # annotations limited to 50 per request
     output["annotations"].each_slice(50).each do |annotation_slice|
       output_dup = output.dup
       output_dup["annotations"] = annotation_slice
