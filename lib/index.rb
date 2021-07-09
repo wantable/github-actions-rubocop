@@ -46,7 +46,6 @@ end
 def update_check(id, conclusion, output)
   body = {
     'name' => @check_name,
-    'head_sha' => @GITHUB_SHA,
     'status' => 'completed',
     'completed_at' => Time.now.iso8601,
     'conclusion' => conclusion,
@@ -123,6 +122,7 @@ def run
     output['annotations'].each_slice(50).each do |annotation_slice|
       output_dup = output.dup
       output_dup['annotations'] = annotation_slice
+
       update_check(id, conclusion, output_dup)
     end
 
