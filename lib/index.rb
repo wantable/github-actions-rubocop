@@ -58,6 +58,10 @@ def update_check(id, conclusion, output)
     'completed_at' => #{Time.now.iso8601},
     'conclusion' => #{conclusion},"
 
+  puts "------output"
+  puts output.inspect
+  puts "-------"
+
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
@@ -125,7 +129,7 @@ def run
     puts "running update check like normal"
     update_check(id, conclusion, output)
 
-    #raise if conclusion == 'failure'
+    raise if conclusion == 'failure'
   rescue StandardError
     puts "running update check in rescue"
     update_check(id, 'failure', nil)
