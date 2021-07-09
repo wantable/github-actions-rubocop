@@ -122,11 +122,12 @@ def run
     results = run_rubocop
     conclusion = results['conclusion']
     output = results['output']
-
+    puts "running update check like normal"
     update_check(id, conclusion, output)
 
     raise if conclusion == 'failure'
   rescue StandardError
+    puts "running update check in rescue"
     update_check(id, 'failure', nil)
     raise
   end
