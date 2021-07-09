@@ -59,12 +59,12 @@ def update_check(id, conclusion, output)
     'conclusion' => #{conclusion},"
 
   puts "------output"
-  puts output.inspect
+  #puts output.inspect
   puts "-------"
   if annotations.present?
     annotations = {
-      title: annotations[:title],
-      summary: annotations[:summary],
+      title: output[:title],
+      summary: output[:summary],
       annotations: []
     }
   end
