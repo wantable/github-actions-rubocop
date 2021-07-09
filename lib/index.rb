@@ -137,7 +137,13 @@ def run
     conclusion = results['conclusion']
     output = results['output']
     puts "running update check like normal"
-    update_check(id, conclusion, output)
+    # limit to 50 annoations per update
+    output["annotations"].each_slice(50).each do |annotation_slice|
+      output_dup = output.dup
+      output_dup["annotations"] = annotation_slice
+      update_check(id, conclusion, output_dup)
+    end
+
 
     raise if conclusion == 'failure'
   rescue StandardError
