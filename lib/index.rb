@@ -53,8 +53,6 @@ def update_check(id, conclusion, output)
     'output' => output
   }
 
-  puts body.inspect
-
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
