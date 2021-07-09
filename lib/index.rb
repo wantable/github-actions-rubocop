@@ -61,7 +61,7 @@ def update_check(id, conclusion, output)
   puts "------output"
   #puts output.inspect
   puts "-------"
-  if output.present?
+  unless output.nil?
     output = {
       title: output[:title],
       summary: output[:summary],
