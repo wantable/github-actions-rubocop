@@ -61,8 +61,8 @@ def update_check(id, conclusion, output)
   puts "------output"
   #puts output.inspect
   puts "-------"
-  if annotations.present?
-    annotations = {
+  if output.present?
+    output = {
       title: output[:title],
       summary: output[:summary],
       annotations: []
