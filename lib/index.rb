@@ -46,38 +46,19 @@ end
 def update_check(id, conclusion, output)
   body = {
     'name' => @check_name,
-    # 'head_sha' => @GITHUB_SHA,
+    'head_sha' => @GITHUB_SHA,
     'status' => 'completed',
     'completed_at' => Time.now.iso8601,
     'conclusion' => conclusion,
     'output' => output
   }
 
-  puts "'name' => #{@check_name},
-    'status' => 'completed',
-    'completed_at' => #{Time.now.iso8601},
-    'conclusion' => #{conclusion},"
-
-
-  # unless output.nil?
-  #   output = {
-  #     title: output[:title],
-  #     summary: output[:summary],
-  #     annotations: []
-  #   }
-
-  #   body['output'] = output
-  # end
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
 
-  # puts "------body"
-  # puts body.inspect
-  # puts "-------"
-
   resp = http.patch(path, body.to_json, @headers)
-  puts "resp.code.to_i: #{resp.code.to_i}"
+
   raise resp.message if resp.code.to_i >= 300
 end
 
@@ -136,19 +117,17 @@ def run
     results = run_rubocop
     conclusion = results['conclusion']
     output = results['output']
-    puts "running update check like normal"
+
     # https://docs.github.com/en/rest/reference/checks#output-object
     # annotations limited to 50 per request
-    output["annotations"].each_slice(50).each do |annotation_slice|
+    output['annotations'].each_slice(50).each do |annotation_slice|
       output_dup = output.dup
-      output_dup["annotations"] = annotation_slice
+      output_dup['annotations'] = annotation_slice
       update_check(id, conclusion, output_dup)
     end
 
-
     raise if conclusion == 'failure'
   rescue StandardError
-    puts "running update check in rescue"
     update_check(id, 'failure', nil)
     raise
   end
