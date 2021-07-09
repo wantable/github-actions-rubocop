@@ -61,7 +61,13 @@ def update_check(id, conclusion, output)
   puts "------output"
   puts output.inspect
   puts "-------"
-
+  if annotations.present?
+    annotations = {
+      title: annotations[:title],
+      summary: annotations[:summary],
+      annotations: []
+    }
+  end
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
