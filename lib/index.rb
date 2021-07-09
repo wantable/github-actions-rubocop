@@ -58,19 +58,23 @@ def update_check(id, conclusion, output)
     'completed_at' => #{Time.now.iso8601},
     'conclusion' => #{conclusion},"
 
-  puts "------output"
-  #puts output.inspect
-  puts "-------"
+
   unless output.nil?
     output = {
       title: output[:title],
       summary: output[:summary],
       annotations: []
     }
+
+    body['output'] = output
   end
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
+
+  puts "------body"
+  puts body.inspect
+  puts "-------"
 
   resp = http.patch(path, body.to_json, @headers)
   puts "resp.code.to_i: #{resp.code.to_i}"
