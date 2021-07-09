@@ -18,7 +18,7 @@ require 'time'
 
 @headers = {
   "Content-Type": 'application/json',
-  "Accept": 'application/vnd.github.antiope-preview+json',
+  "Accept": 'application/vnd.github.v3+json',
   "Authorization": "Bearer #{@GITHUB_TOKEN}",
   "User-Agent": 'github-actions-rubocop'
 }
@@ -52,6 +52,8 @@ def update_check(id, conclusion, output)
     'conclusion' => conclusion,
     'output' => output
   }
+
+  puts body.inspect
 
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
