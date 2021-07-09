@@ -129,7 +129,7 @@ def run
     raise if conclusion == 'failure'
   rescue StandardError
     update_check(id, 'failure', nil)
-    raise
+    #raise
   end
 end
 
