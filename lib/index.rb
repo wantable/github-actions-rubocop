@@ -125,7 +125,7 @@ def run
     puts "running update check like normal"
     update_check(id, conclusion, output)
 
-    raise if conclusion == 'failure'
+    #raise if conclusion == 'failure'
   rescue StandardError
     puts "running update check in rescue"
     update_check(id, 'failure', nil)
