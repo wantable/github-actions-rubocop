@@ -18,7 +18,7 @@ require 'time'
 
 @headers = {
   "Content-Type": 'application/json',
-  "Accept": 'application/vnd.github.antiope-preview+json',
+  "Accept": 'application/vnd.github.v3+json',
   "Authorization": "Bearer #{@GITHUB_TOKEN}",
   "User-Agent": 'github-actions-rubocop'
 }
@@ -46,7 +46,6 @@ end
 def update_check(id, conclusion, output)
   body = {
     'name' => @check_name,
-    'head_sha' => @GITHUB_SHA,
     'status' => 'completed',
     'completed_at' => Time.now.iso8601,
     'conclusion' => conclusion,
@@ -118,7 +117,14 @@ def run
     conclusion = results['conclusion']
     output = results['output']
 
-    update_check(id, conclusion, output)
+    # https://docs.github.com/en/rest/reference/checks#output-object
+    # annotations limited to 50 per request
+    output['annotations'].each_slice(50).each do |annotation_slice|
+      output_dup = output.dup
+      output_dup['annotations'] = annotation_slice
+
+      update_check(id, conclusion, output_dup)
+    end
 
     raise if conclusion == 'failure'
   rescue StandardError
