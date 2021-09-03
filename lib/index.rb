@@ -117,7 +117,7 @@ def run
     conclusion = results['conclusion']
     output = results['output']
     puts "conclusion: #{conclusion}"
-    puts output.inspect
+    puts "#{output}"
     update_check(id, conclusion, output)
     # https://docs.github.com/en/rest/reference/checks#output-object
     # annotations limited to 50 per request
