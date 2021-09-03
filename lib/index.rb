@@ -118,14 +118,15 @@ def run
     output = results['output']
     puts "conclusion: #{conclusion}"
     puts output.inspect
+    update_check(id, conclusion, output)
     # https://docs.github.com/en/rest/reference/checks#output-object
     # annotations limited to 50 per request
-    output['annotations'].each_slice(50).each do |annotation_slice|
-      output_dup = output.dup
-      output_dup['annotations'] = annotation_slice
+    # output['annotations'].each_slice(50).each do |annotation_slice|
+    #   output_dup = output.dup
+    #   output_dup['annotations'] = annotation_slice
 
-      update_check(id, conclusion, output_dup)
-    end
+    #   update_check(id, conclusion, output_dup)
+    # end
 
     # raise if conclusion == 'failure'
   rescue StandardError
