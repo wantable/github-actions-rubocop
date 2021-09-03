@@ -127,7 +127,7 @@ def run
       update_check(id, conclusion, output_dup)
     end
 
-    raise if conclusion == 'failure'
+    # raise if conclusion == 'failure'
   rescue StandardError
     update_check(id, 'failure', nil)
     raise
