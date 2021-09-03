@@ -116,7 +116,8 @@ def run
     results = run_rubocop
     conclusion = results['conclusion']
     output = results['output']
-
+    puts "conclusion: #{conclusion}"
+    puts output.inspect
     # https://docs.github.com/en/rest/reference/checks#output-object
     # annotations limited to 50 per request
     output['annotations'].each_slice(50).each do |annotation_slice|
