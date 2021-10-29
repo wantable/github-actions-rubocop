@@ -131,8 +131,11 @@ def run
     # Print offenses
     if conclusion == 'failure'
       puts output[:summary]
-      output['annotations'].each do |annotation|
-        puts "L#{annotation['start_line']}-L#{annotation['end_line']}:#{annotation['message']}"
+      output['annotations'].group_by{|a| a['path']}.each do |path, annotations|
+        puts "---Issues Found for #{path}---"
+        annotations.each do |annotations|
+          puts "L#{annotation['start_line']}-L#{annotation['end_line']}:#{annotation['message']}"
+        end
       end
       raise 'Rubocop found offenses'
     end
