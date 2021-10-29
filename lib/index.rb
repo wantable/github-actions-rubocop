@@ -137,7 +137,7 @@ def run
       raise 'Rubocop found offenses'
     end
   rescue StandardError
-    update_check(id, 'failure', nil)
+    # update_check(id, 'failure', nil)
     raise
   end
 end
