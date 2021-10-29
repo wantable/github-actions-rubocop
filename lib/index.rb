@@ -140,11 +140,12 @@ def run
           puts "L#{annotation['start_line']}-L#{annotation['end_line']}:#{annotation['message']}"
         end
       end
-      raise 'Rubocop found offenses'
+      # raise 'Rubocop found offenses'
+      update_check(id, 'failure', nil)
     end
   rescue StandardError
     # update_check(id, 'failure', nil)
-    raise
+    # raise
   end
 end
 
