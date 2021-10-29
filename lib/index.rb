@@ -123,13 +123,18 @@ def run
     output['annotations'].each_slice(50).each do |annotation_slice|
       output_dup = output.dup
       output_dup['annotations'] = annotation_slice
+      output_dup['text'] ||= ''
 
       update_check(id, conclusion, output_dup)
     end
 
+    # Print offenses
     if conclusion == 'failure'
-      puts output.inspect
-      raise
+      puts output[:summary]
+      output['annotations'].each do |annotation|
+        puts "L#{annotation['start_line']}-L#{annotation['end_line']}:#{annotation['message']}"
+      end
+      raise 'Rubocop found offenses'
     end
   rescue StandardError
     update_check(id, 'failure', nil)
