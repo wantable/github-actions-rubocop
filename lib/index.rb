@@ -134,7 +134,7 @@ def run
       puts output['summary']
       output['annotations'].group_by{|a| a['path']}.each do |path, annotations|
         puts "---Issues Found for #{path}---"
-        annotations.each do |annotations|
+        annotations.each do |annotation|
           puts "L#{annotation['start_line']}-L#{annotation['end_line']}:#{annotation['message']}"
         end
       end
