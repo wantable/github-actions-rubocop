@@ -128,7 +128,7 @@ def run
 
     #   update_check(id, conclusion, output_dup)
     # end
-
+    output['text'] ||= "Well not this again"
     update_check(id, conclusion, output)
 
     # Print offenses
