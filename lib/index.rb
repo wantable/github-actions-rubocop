@@ -121,13 +121,15 @@ def run
     # https://docs.github.com/en/rest/reference/checks#output-object
     # annotations limited to 50 per request
     puts output.inspect
-    output['annotations'].each_slice(50).each do |annotation_slice|
-      output_dup = output.dup
-      output_dup['annotations'] = annotation_slice
-      output_dup['text'] ||= ''
+    # output['annotations'].each_slice(50).each do |annotation_slice|
+    #   output_dup = output.dup
+    #   output_dup['annotations'] = annotation_slice
+    #   output_dup['text'] ||= ''
 
-      update_check(id, conclusion, output_dup)
-    end
+    #   update_check(id, conclusion, output_dup)
+    # end
+
+    update_check(id, conclusion, output)
 
     # Print offenses
     if conclusion == 'failure'
