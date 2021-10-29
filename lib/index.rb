@@ -90,8 +90,6 @@ def run_rubocop
       annotation_level = @annotation_levels[severity]
       count += 1
 
-      annotation_level = 'warning'
-
       conclusion = 'failure' if annotation_level == 'failure'
 
       annotations.push(
