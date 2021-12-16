@@ -1,4 +1,4 @@
-FROM ruby:2.7.0
+FROM ruby:2.7
 RUN apk add --no-cache --update build-base linux-headers git
 
 LABEL com.github.actions.name="Rubocop Code Checks"
