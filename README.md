@@ -9,8 +9,8 @@ Lint your Ruby code in parallel to your builds.
 
 ## How it works
 
-- Ruby 2.6.5
-- Rubocop + Rubocop Performance
+- Ruby 3.1.2
+- Rubocop + Rubocop Performance + Rubocop Rails
 
 
 ![](screenshots/annotations.png)
