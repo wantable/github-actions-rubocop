@@ -55,9 +55,8 @@ def update_check(id, conclusion, output)
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
-  puts body.to_json
   resp = http.patch(path, body.to_json, @headers)
-  puts resp.code
+
   raise resp.message if resp.code.to_i >= 300
 end
 
@@ -75,7 +74,6 @@ def run_rubocop
   Dir.chdir(@GITHUB_WORKSPACE) do
     errors = JSON.parse(`haml-lint -r json`)
   end
-  puts errors.inspect
   conclusion = 'success'
   count = 0
 
@@ -90,8 +88,6 @@ def run_rubocop
       annotation_level = @annotation_levels[severity]
       count += 1
 
-      conclusion = 'failure' if annotation_level == 'failure'
-
       annotations.push(
         'path' => path,
         'start_line' => location['line'],
@@ -101,6 +97,8 @@ def run_rubocop
       )
     end
   end
+
+  conclusion = 'failure' if annotations.any? {|a| a['annotation_level'] == 'warning' }
 
   output = {
     "title": @check_name,
