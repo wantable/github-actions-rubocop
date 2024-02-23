@@ -55,9 +55,9 @@ def update_check(id, conclusion, output)
   http = Net::HTTP.new('api.github.com', 443)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
-
+  puts body.to_json
   resp = http.patch(path, body.to_json, @headers)
-
+  puts resp.code
   raise resp.message if resp.code.to_i >= 300
 end
 
@@ -94,8 +94,8 @@ def run_rubocop
 
       annotations.push(
         'path' => path,
-        'start_line' => location['start_line'],
-        'end_line' => location['start_line'],
+        'start_line' => location['line'],
+        'end_line' => location['line'],
         "annotation_level": annotation_level,
         'message' => message
       )
