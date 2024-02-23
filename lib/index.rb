@@ -73,8 +73,9 @@ def run_rubocop
   annotations = []
   errors = nil
   Dir.chdir(@GITHUB_WORKSPACE) do
-    errors = JSON.parse(`rubocop --format json`)
+    errors = JSON.parse(`haml-lint -r json`)
   end
+  puts errors.inspect
   conclusion = 'success'
   count = 0
 
