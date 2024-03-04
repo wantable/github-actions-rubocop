@@ -103,11 +103,11 @@ def run_rubocop
   output = {
     "title": @check_name,
     "summary": "#{count} offense(s) found",
-    'annotations' => annotations
+    'annotations': annotations
   }
 
   puts output['summary']
-  output['annotations'].each{|x|puts x.inspect}
+  output[:annotations].each{|x|puts x.inspect}
 
   { 'output' => output, 'conclusion' => conclusion }
 end
