@@ -14,13 +14,14 @@ require 'time'
 @owner = @repository['owner']['login']
 @repo = @repository['name']
 
-@check_name = 'Rubocop'
+@check_name = 'HamlLint'
 
 @headers = {
   "Content-Type": 'application/json',
   "Accept": 'application/vnd.github.v3+json',
   "Authorization": "Bearer #{@GITHUB_TOKEN}",
-  "User-Agent": 'github-actions-rubocop'
+  "User-Agent": 'github-actions-rubocop',
+  "X-GitHub-Api-Version": '2022-11-28'
 }
 
 def create_check
@@ -56,7 +57,7 @@ def update_check(id, conclusion, output)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
   resp = http.patch(path, body.to_json, @headers)
-  puts resp.message
+  puts resp.body.inspect
   raise resp.message if resp.code.to_i >= 300
 end
 
