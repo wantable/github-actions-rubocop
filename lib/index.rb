@@ -57,7 +57,9 @@ def update_check(id, conclusion, output)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
   resp = http.patch(path, body.to_json, @headers)
-  puts resp.body.inspect
+  parsed = JSON.parse(resp.body)
+  puts parsed.keys.inspect
+  puts parsed['annotations'].inspect
   raise resp.message if resp.code.to_i >= 300
 end
 
