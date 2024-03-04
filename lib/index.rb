@@ -122,7 +122,7 @@ def run
 
     # https://docs.github.com/en/rest/reference/checks#output-object
     # annotations limited to 50 per request
-    output['annotations'].each_slice(40).each do |annotation_slice|
+    output[:annotations].each_slice(40).each do |annotation_slice|
       output_dup = output.dup
       output_dup['annotations'] = annotation_slice
 
