@@ -56,7 +56,7 @@ def update_check(id, conclusion, output)
   http.use_ssl = true
   path = "/repos/#{@owner}/#{@repo}/check-runs/#{id}"
   resp = http.patch(path, body.to_json, @headers)
-
+  puts resp.message
   raise resp.message if resp.code.to_i >= 300
 end
 
@@ -121,7 +121,7 @@ def run
 
     # https://docs.github.com/en/rest/reference/checks#output-object
     # annotations limited to 50 per request
-    output['annotations'].each_slice(50).each do |annotation_slice|
+    output['annotations'].each_slice(40).each do |annotation_slice|
       output_dup = output.dup
       output_dup['annotations'] = annotation_slice
 
