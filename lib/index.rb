@@ -59,7 +59,7 @@ def update_check(id, conclusion, output)
   resp = http.patch(path, body.to_json, @headers)
   parsed = JSON.parse(resp.body)
   puts parsed.keys.inspect
-  puts parsed['annotations'].inspect
+  puts parsed['output']['annotations_count'].inspect
   raise resp.message if resp.code.to_i >= 300
 end
 
