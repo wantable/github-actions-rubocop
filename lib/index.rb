@@ -106,6 +106,8 @@ def run_rubocop
     'annotations' => annotations
   }
 
+  puts output.inspect
+
   { 'output' => output, 'conclusion' => conclusion }
 end
 
