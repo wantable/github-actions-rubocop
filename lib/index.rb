@@ -108,7 +108,7 @@ def run_rubocop
   }
 
   puts output['summary']
-  output[:annotations].each{|x|puts x.inspect}
+  # output[:annotations].each{|x|puts x.inspect}
 
   { 'output' => output, 'conclusion' => conclusion }
 end
