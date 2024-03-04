@@ -101,7 +101,7 @@ def run_rubocop
     end
   end
 
-  conclusion = 'failure' if annotations.any? {|a| a['annotation_level'] == 'warning' }
+  conclusion = 'failure' if annotations.any? { |a| a['annotation_level'] == 'warning' }
 
   output = {
     "title": @check_name,
@@ -126,7 +126,7 @@ def run
     # annotations limited to 50 per request
     output[:annotations].each_slice(40).each do |annotation_slice|
       output_dup = output.dup
-      output_dup['annotations'] = annotation_slice
+      output_dup['annotations'] = [annotation_slice.first]
 
       update_check(id, conclusion, output_dup)
     end
