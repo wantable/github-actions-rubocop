@@ -11,11 +11,11 @@ gem install rubocop-rails -v 2.11.3
 #echo $(haml-lint app/views/w3/users/ -r github --no-summary)
 echo "result=$(haml-lint app/views/w3/users/ -r github --no-summary)" >> $GITHUB_OUTPUT
 
-export IFS="\n"
-sentence=$(haml-lint app/views/w3/users/ -r github --no-summary)
-for word in $sentence; do
-  echo "$word"
-done
+# export IFS="\n"
+# sentence=$(haml-lint app/views/w3/users/ -r github --no-summary)
+# for word in $sentence; do
+#   echo "$word"
+# done
 
 # echo "level=error file=app/views/w3/users/signup.haml,line=2::is implicit" >> $GITHUB_OUTPUT
 # echo 'level=error file=app/views/w3/users/signup.haml,line=2::`%25div.one-class` can be written as `.one-class` since `%25div` is implicit' >> $GITHUB_OUTPUT
