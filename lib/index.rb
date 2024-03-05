@@ -110,9 +110,6 @@ def run_rubocop
     'annotations': annotations
   }
 
-  puts output['summary']
-  # output[:annotations].each{|x|puts x.inspect}
-
   { 'output' => output, 'conclusion' => conclusion }
 end
 
@@ -133,7 +130,11 @@ def run
     end
 
     if conclusion == 'failure'
-      puts output.inspect
+      output[:annotations].each do |annotation|
+        next if annotation['annotation_level'] != 'failure'
+        puts annotation.to_json
+      end
+
       raise
     end
   rescue StandardError
