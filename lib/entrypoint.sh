@@ -8,8 +8,8 @@ gem install rubocop-minitest -v 0.13.0
 gem install rubocop-performance -v 1.11.5
 gem install rubocop-rails -v 2.11.3
 
-#echo $(haml-lint app/views/w3/users/ -r github --no-summary)
-echo "result=$(haml-lint app/views/w3/users/ -r github --no-summary)" >> $GITHUB_OUTPUT
+echo $(haml-lint app/views/w3/users/ -r github --no-summary)
+#echo "result=$(haml-lint app/views/w3/users/ -r github --no-summary)" >> $GITHUB_OUTPUT
 
 # export IFS="\n"
 # sentence=$(haml-lint app/views/w3/users/ -r github --no-summary)
