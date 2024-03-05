@@ -96,13 +96,13 @@ def run_rubocop
         'path' => path,
         'start_line' => location['line'],
         'end_line' => location['line'],
-        "annotation_level": annotation_level,
+        'annotation_level' => annotation_level,
         'message' => message
       )
     end
   end
 
-  conclusion = 'failure' if annotations.any? { |a| a['annotation_level'] == 'warning' }
+  conclusion = 'failure' if annotations.any? { |a| a['annotation_level'] == 'failure' }
 
   output = {
     "title": @check_name,
