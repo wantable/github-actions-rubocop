@@ -8,4 +8,5 @@ gem install rubocop-minitest -v 0.13.0
 gem install rubocop-performance -v 1.11.5
 gem install rubocop-rails -v 2.11.3
 
+echo "::error file=app/views/w3/users/signup.haml,line=2::`%25div.one-class` can be written as `.one-class` since `%25div` is implicit"  >> $GITHUB_OUTPUT
 ruby /action/lib/index.rb
