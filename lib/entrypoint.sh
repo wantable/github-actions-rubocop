@@ -11,7 +11,7 @@ gem install rubocop-rails -v 2.11.3
 #echo $(haml-lint app/views/w3/users/ -r github --no-summary)
 # echo "RESULT=$(haml-lint app/views/w3/users/ -r github --no-summary)" >> $GITHUB_OUTPUT
 
- echo "MULTI_LINES_TEXT_ENV_VAR<<EOF" >> $GITHUB_OUTPUT
+ echo "<<EOF" >> $GITHUB_OUTPUT
 
  # here we can place the command that will generate multi-line text
  echo $(haml-lint app/views/w3/users/ -r github --no-summary) >> $GITHUB_OUTPUT
