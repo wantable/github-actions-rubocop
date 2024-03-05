@@ -85,7 +85,7 @@ def run_rubocop
     path = file['path']
     offenses = file['offenses']
 
-    next unless path.ends_with?('signup.haml')
+    next unless path.end_with?('signup.haml')
 
     offenses.each do |offense|
       severity = offense['severity']
