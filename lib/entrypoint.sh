@@ -13,7 +13,7 @@ gem install rubocop-rails -v 2.11.3
 export IFS="\n"
 sentence=$(haml-lint app/views/w3/users/ -r github --no-summary)
 for word in $sentence; do
-  echo "$word" >> $GITHUB_OUTPUT
+  echo "result=$word" >> $GITHUB_OUTPUT
 done
 
 # echo "level=error file=app/views/w3/users/signup.haml,line=2::is implicit" >> $GITHUB_OUTPUT
