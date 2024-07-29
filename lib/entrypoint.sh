@@ -12,7 +12,7 @@ echo "MULTI_LINES_TEXT_ENV_VAR<<EOF" >> $GITHUB_OUTPUT
 
 # here we can place the command that will generate multi-line text
 echo $(rubocop -f github | sed "s/\`//g" | sed "s/'//g" | sed "s/\"//g") >> $GITHUB_OUTPUT
-
+echo $GITHUB_OUTPUT
 echo "EOF" >> $GITHUB_OUTPUT
 
 # export IFS="\n"
