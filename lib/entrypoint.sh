@@ -17,7 +17,7 @@ echo "MULTI_LINES_TEXT_ENV_VAR<<EOF" >> $GITHUB_OUTPUT
 
 # here we can place the command that will generate multi-line text
 echo $(haml-lint -r github --no-summary | sed "s/\`//g" | sed "s/'//g" | sed "s/\"//g") >> $GITHUB_OUTPUT
-echo $(scss-lint | sed “s/\`//g” | sed “s/‘//g” | sed “s/\“//g”) >> $GITHUB_OUTPUT
+echo $(scss-lint) >> $GITHUB_OUTPUT
 
 echo "EOF" >> $GITHUB_OUTPUT
 
