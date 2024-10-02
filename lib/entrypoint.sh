@@ -1,9 +1,10 @@
 #!/bin/sh
 
 set -e
-
 gem install haml_lint -v 0.57.0
-gem install scss_lint ./scss_lint-0.60.1.gem
+
+DIR="$( cd "$( dirname "$0" )" && pwd )"
+gem install scss_lint -l "$(DIR)/scss_lint-0.60.1.gem"
 gem install rubocop -v 1.62
 gem install rubocop-minitest -v 0.13.0
 gem install rubocop-performance -v 1.11.5
