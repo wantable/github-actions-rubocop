@@ -3,7 +3,6 @@
 set -e
 
 gem install haml_lint -v 0.57.0
-gem install scss_lint -v 0.60.0
 gem install rubocop -v 1.62
 gem install rubocop-minitest -v 0.13.0
 gem install rubocop-performance -v 1.11.5
@@ -17,7 +16,6 @@ echo "MULTI_LINES_TEXT_ENV_VAR<<EOF" >> $GITHUB_OUTPUT
 
 # here we can place the command that will generate multi-line text
 echo $(haml-lint -r github --no-summary | sed "s/\`//g" | sed "s/'//g" | sed "s/\"//g") >> $GITHUB_OUTPUT
-echo $(scss-lint | sed "s/\`//g" | sed "s/'//g" | sed "s/\"//g") >> $GITHUB_OUTPUT
 
 echo "EOF" >> $GITHUB_OUTPUT
 
