@@ -3,7 +3,7 @@
 set -e
 
 gem install haml_lint -v 0.57.0
-gem install scss_lint -s https://github.com/nbucciarelli/scss-lint
+gem install scss_lint -s "https://github.com/nbucciarelli/scss-lint/"
 gem install rubocop -v 1.62
 gem install rubocop-minitest -v 0.13.0
 gem install rubocop-performance -v 1.11.5
