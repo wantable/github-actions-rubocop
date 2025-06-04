@@ -2,8 +2,8 @@
 
 set -e
 
-gem install haml_lint -v 0.57.0
-gem install rubocop -v 1.62
+gem install haml_lint -v 0.58.0
+gem install rubocop -v 1.62.1
 gem install rubocop-minitest -v 0.13.0
 gem install rubocop-performance -v 1.11.5
 gem install rubocop-rails -v 2.24.0
